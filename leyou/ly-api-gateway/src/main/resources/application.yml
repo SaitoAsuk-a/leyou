@@ -1,0 +1,60 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: api-gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 5
+
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
+
+zuul:
+  prefix: /api # 添加路由前缀
+  retryable: true
+  routes:
+    item-service: /item/** # 将商品微服务映射到/item/**
+    search-service: /search/** # 将商品搜索微服务映射到/search/**
+    user-service: /user/** # 将用户微服务映射到/user/**
+    auth-service: /auth/** # 将授权微服务映射到/auth/**
+    cart-service: /cart/**
+    order-service: /order/**
+
+  add-host-header: true
+  sensitive-headers:  #设置zuul的过滤头为空（所有的头信息全部展示）
+
+  #忽略服务列表
+  ignored-services:
+    - upload-service
+  # 忽略upload-service服务
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
+
+ly:
+  jwt:
+    pubKeyPath: D:/tmp/rsa/rsa.pub # 公钥地址
+    cookieName: LY_TOKEN # cookie的名称
+
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
