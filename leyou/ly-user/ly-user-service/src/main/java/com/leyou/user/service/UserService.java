@@ -36,6 +36,8 @@ public class UserService {
             user.setUsername(data);
         } else if (2 == type) {
             user.setPhone(data);
+        }else{
+            return null;
         }
 
         return this.userMapper.selectCount(user) == 0;

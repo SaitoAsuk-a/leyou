@@ -24,6 +24,8 @@ spring:
         max-interval: 210000ms
         multiplier: 2
     publisher-confirms: true
+  jackson:
+    default-property-inclusion: non_null
 
 eureka:
   client:

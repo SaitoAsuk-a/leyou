@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author: taft
- * @Date: 2018-9-6 17:50
+ * @Author: liyu
+ * @Date: 2019-8-6 17:50
  */
 @RestController
 @EnableConfigurationProperties(JwtProperties.class)

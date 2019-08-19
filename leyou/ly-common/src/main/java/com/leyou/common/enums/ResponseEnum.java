@@ -14,9 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public enum ResponseEnum {
-    REGISTER_USER_SUCCESS(200, "用户注册成功"),
+    USER_REGISTER_SUCCESS(200, "用户注册成功"),
+    USER_REGISTER_FAILED(404, "用户注册失败"),
     USER_QUERY_SUCCESS(200, "用户查询成功"),
-    USER_QUERY_FAILED(404, "用户查询失败");
-    private int code;
+    USER_QUERY_FAILED(404, "用户查询失败"),
+    MESSAGE_SEND_SUCCESS(200, "短信发送成功"),
+    MESSAGE_SEND_FAILED(404, "短信发送失败"),
+    ;
+
+    private Integer code;
     private String msg;
 }
