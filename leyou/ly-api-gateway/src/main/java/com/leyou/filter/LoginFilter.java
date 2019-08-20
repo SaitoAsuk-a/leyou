@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @Author: taft
- * @Date: 2018-9-7 15:06
+ * @author liyu
  */
 @Component
 @EnableConfigurationProperties({JwtProperties.class, FilterProperties.class})
@@ -55,7 +54,9 @@ public class LoginFilter extends ZuulFilter {
 
         //如果请求的uri在允许的列表之内，循环停止，并且不拦截
         for (String allowPath : allowPaths) {//  /api/auth
-            if (uri.startsWith(allowPath)) {
+//            if (uri.startsWith(allowPath)) {
+            if (StringUtils.contains(uri,allowPath)) {
+
                 isFilter = false;
                 break;
             }
@@ -64,7 +65,7 @@ public class LoginFilter extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
         //获取request
         RequestContext currentContext = RequestContext.getCurrentContext();
 

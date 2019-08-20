@@ -4,18 +4,16 @@ import com.leyou.auth.entity.UserInfo;
 import com.leyou.auth.utils.JwtUtils;
 import com.leyou.cart.config.JwtProperties;
 import com.leyou.common.utils.CookieUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author: taft
- * @Date: 2018-9-7 17:07
+ * @author : taft
+ * @date : 2018-9-7 17:07
  */
 
 @EnableConfigurationProperties(JwtProperties.class)
@@ -31,13 +29,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
         try {
             String token = CookieUtils.getCookieValue(request, jwtProperties.getCookieName());
 
             UserInfo user = JwtUtils.getInfoFromToken(token, jwtProperties.getPublicKey());
-            if (null!=user){
+            if (null == user) {
+            } else {
                 tl.set(user);
                 return true;
             }
@@ -49,7 +48,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         tl.remove();
     }
 

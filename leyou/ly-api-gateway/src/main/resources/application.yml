@@ -51,7 +51,7 @@ ly:
     cookieName: LY_TOKEN # cookie的名称
 
   filter:
-    allowPaths:
+    allowPaths: #配置拦截的白名单
       - /api/auth
       - /api/search
       - /api/user/register
