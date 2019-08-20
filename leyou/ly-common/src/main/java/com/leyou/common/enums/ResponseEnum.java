@@ -23,6 +23,8 @@ public enum ResponseEnum {
     MESSAGE_SEND_FAILED(404, "短信发送失败"),
     USER_AUTH_SUCCESS(200,"认证成功"),
     USER_AUTH_FAILED(404,"认证失败"),
+    AUTH_SUCCESS(200,"授权成功"),
+    AUTH_FAILED(401,"授权失败"),
     ;
 
     private Integer code;

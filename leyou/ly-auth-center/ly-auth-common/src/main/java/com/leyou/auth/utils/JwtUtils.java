@@ -18,9 +18,8 @@ public class JwtUtils {
      * @param privateKey    私钥
      * @param expireMinutes 过期时间，单位秒
      * @return
-     * @throws Exception
      */
-    public static String generateToken(UserInfo userInfo, PrivateKey privateKey, int expireMinutes) throws Exception {
+    public static String generateToken(UserInfo userInfo, PrivateKey privateKey, int expireMinutes) {
         return Jwts.builder()
                 .claim(JwtConstans.JWT_KEY_ID, userInfo.getId())
                 .claim(JwtConstans.JWT_KEY_USER_NAME, userInfo.getUsername())
@@ -78,9 +77,8 @@ public class JwtUtils {
      * @param token     用户请求中的令牌
      * @param publicKey 公钥
      * @return 用户信息
-     * @throws Exception
      */
-    public static UserInfo getInfoFromToken(String token, PublicKey publicKey) throws Exception {
+    public static UserInfo getInfoFromToken(String token, PublicKey publicKey) {
         Jws<Claims> claimsJws = parserToken(token, publicKey);
         Claims body = claimsJws.getBody();
         return new UserInfo(

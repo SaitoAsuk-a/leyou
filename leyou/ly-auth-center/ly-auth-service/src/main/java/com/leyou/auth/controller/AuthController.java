@@ -70,9 +70,10 @@ public class AuthController {
     }
 
     @GetMapping("verify")
-    public ResponseEntity<UserInfo> verify(@CookieValue("LY_TOKEN")String token,HttpServletRequest request,HttpServletResponse response){
-
-
+    public ResponseModel verify(
+            @CookieValue("LY_TOKEN")String token,
+            HttpServletRequest request,
+            HttpServletResponse response){
         try {
             UserInfo user = JwtUtils.getInfoFromToken(token, jwtProperties.getPublicKey());
 
@@ -80,15 +81,15 @@ public class AuthController {
             String newToken = JwtUtils.generateToken(user, jwtProperties.getPrivateKey(), jwtProperties.getExpire());
 
             CookieUtils.setCookie(request,response,jwtProperties.getCookieName(),newToken,jwtProperties.getCookieMaxAge(),null,true);
-            if (null==user){
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            if (user==null){
+                return new ResponseModel<>(ResponseEnum.AUTH_FAILED,null);
             }
-            return ResponseEntity.ok(user);
+            return new ResponseModel<>(ResponseEnum.AUTH_SUCCESS,user);
         } catch (Exception e) {
             e.printStackTrace();
 
         }
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        return new ResponseModel<>(ResponseEnum.AUTH_FAILED,null);
 
     }
 }
