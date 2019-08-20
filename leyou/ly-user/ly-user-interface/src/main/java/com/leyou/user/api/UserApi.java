@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface UserApi {
 
-    @GetMapping("query")
+    @GetMapping("queryUser")
     User queryUser(
             @RequestParam("username") String username,
             @RequestParam("password") String password

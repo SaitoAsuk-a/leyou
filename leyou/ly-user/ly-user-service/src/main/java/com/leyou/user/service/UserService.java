@@ -103,7 +103,8 @@ public class UserService {
     /**
      * 根据用户名和密码查询，由于密码加盐加密无法直接查询
      * 依据用户名去查询，如果有，所有的对应的数据都能9被查出，取出盐值，进行输入的密码加密，和查询出来的比对
-     * @param user
+     * @param passwrod
+     * @param username
      * @return
      */
     public User queryUserByUsernameAndPassword(String username,String passwrod) {

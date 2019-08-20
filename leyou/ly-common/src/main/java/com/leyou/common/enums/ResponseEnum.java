@@ -9,6 +9,7 @@ package com.leyou.common.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
@@ -20,6 +21,8 @@ public enum ResponseEnum {
     USER_QUERY_FAILED(404, "用户查询失败"),
     MESSAGE_SEND_SUCCESS(200, "短信发送成功"),
     MESSAGE_SEND_FAILED(404, "短信发送失败"),
+    USER_AUTH_SUCCESS(200,"认证成功"),
+    USER_AUTH_FAILED(404,"认证失败"),
     ;
 
     private Integer code;

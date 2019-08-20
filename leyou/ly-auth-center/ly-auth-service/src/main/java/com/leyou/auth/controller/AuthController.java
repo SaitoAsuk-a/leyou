@@ -1,10 +1,15 @@
 package com.leyou.auth.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.leyou.auth.config.JwtProperties;
 import com.leyou.auth.entity.UserInfo;
 import com.leyou.auth.service.AuthService;
 import com.leyou.auth.utils.JwtUtils;
+import com.leyou.common.enums.ResponseEnum;
 import com.leyou.common.utils.CookieUtils;
+import com.leyou.common.vo.ResponseModel;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.HttpStatus;
@@ -18,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Author: liyu
  * @Date: 2019-8-6 17:50
  */
+@Slf4j
 @RestController
 @EnableConfigurationProperties(JwtProperties.class)
 public class AuthController {
@@ -40,24 +46,27 @@ public class AuthController {
      */
 
     @PostMapping("accredit")
-    public ResponseEntity<Void> accredit(
+    public ResponseEntity<ResponseModel> accredit(
             @RequestParam("username") String username,
             @RequestParam("password") String password,
             HttpServletRequest request,
             HttpServletResponse response
-    ) {
+    ){
         // 登录校验,先去查询数据库
         String token = this.authService.authentication(username, password);
         if (null==token){
             //没有认证
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(new ResponseModel<>(ResponseEnum.USER_AUTH_FAILED,null),HttpStatus.UNAUTHORIZED);
         }
 
         //controller得到token要把token回送到客户端
         CookieUtils.setCookie(request, response, jwtProperties.getCookieName(),
                 token, jwtProperties.getCookieMaxAge(), null, true);
+        log.info("token="+token);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("token",token);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new ResponseModel<>(ResponseEnum.USER_AUTH_SUCCESS,jsonObject));
     }
 
     @GetMapping("verify")
