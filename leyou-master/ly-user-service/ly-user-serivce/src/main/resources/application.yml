@@ -4,16 +4,17 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:mysql://localhost:3306/leyou
+    url: jdbc:mysql://localhost:3306/mall
     username: root
-    password: root
+    password: 123456
   redis:
-    host: 192.168.82.100
+    host: 192.168.35.188
+    port: 6381
   rabbitmq:
-    username: leyou
-    password: leyou
-    virtual-host: /leyou
-    host: 192.168.82.100
+    host: 192.168.35.188
+    username: guest
+    password: guest
+    virtual-host: /
 eureka:
   client:
     service-url:

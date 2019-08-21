@@ -4,19 +4,20 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/leyou?characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
   jackson:
     default-property-inclusion: non_null
   redis:
-    host: 192.168.82.100
+    host: 192.168.35.188
+    port: 6381
   rabbitmq:
-    host: 192.168.82.100
-    username: leyou
-    password: leyou
-    virtual-host: /leyou
+    host: 192.168.35.188
+    username: guest
+    password: guest
+    virtual-host: /
     template:
       retry:
         enabled: true
@@ -36,7 +37,7 @@ mybatis:
   type-aliases-package: com.leyou.order.pojo
 ly:
   jwt:
-    pubKeyPath: /Users/bystander/id_rsa.pub # 公钥地址
+    pubKeyPath: E:\\tmp\\rsa\\rsa.pub # 公钥地址
     cookieName: LY_TOKEN # cookie的名称
   worker:
     workerId: 1
