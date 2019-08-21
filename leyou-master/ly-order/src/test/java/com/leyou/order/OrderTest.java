@@ -1,4 +1,4 @@
-package com.leyou;
+package com.leyou.order;
 
 import com.leyou.common.utils.IdWorker;
 import com.leyou.order.utils.PayHelper;
