@@ -1,6 +1,7 @@
 package com.leyou;
 
 import com.leyou.common.utils.IdWorker;
+import com.leyou.utils.PayHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,23 @@ public class OrderTest {
     @Autowired
     private IdWorker idWorker;
 
+    @Autowired
+    private PayHelper payHelper;
+
     @Test
     public void getOrderId(){
         for (int i = 0; i < 50; i++) {
         long id = idWorker.nextId();
         System.out.println("id = " + id);
         }
+    }
+
+    @Test
+    public void generateUrl(){
+        long id = idWorker.nextId();
+        System.out.println("id = " + id);
+        String payUrl = payHelper.createPayUrl(id);
+        System.out.println("payUrl = " + payUrl);
     }
 
 }
