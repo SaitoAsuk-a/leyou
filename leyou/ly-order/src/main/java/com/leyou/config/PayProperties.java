@@ -1,8 +1,9 @@
 package com.leyou.config;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-
+@Data
 @ConfigurationProperties(prefix = "ly.pay")
 public class PayProperties {
 
@@ -15,44 +16,4 @@ public class PayProperties {
     private int connectTimeoutMs; // 连接超时时间
 
     private int readTimeoutMs;// 读取超时时间
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getMchId() {
-        return mchId;
-    }
-
-    public void setMchId(String mchId) {
-        this.mchId = mchId;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public int getConnectTimeoutMs() {
-        return connectTimeoutMs;
-    }
-
-    public void setConnectTimeoutMs(int connectTimeoutMs) {
-        this.connectTimeoutMs = connectTimeoutMs;
-    }
-
-    public int getReadTimeoutMs() {
-        return readTimeoutMs;
-    }
-
-    public void setReadTimeoutMs(int readTimeoutMs) {
-        this.readTimeoutMs = readTimeoutMs;
-    }
 }

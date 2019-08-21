@@ -5,9 +5,9 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/heima?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
     username: root
-    password: root
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     druid:
       initial-size: 5
@@ -29,7 +29,10 @@ spring:
       exchange: ly.item.exchange
     publisher-confirms: true
   redis:
-    host: 192.168.206.66
+    host: 192.168.35.188
+    port: 6381
+  jackson:
+    default-property-inclusion: non_null
 eureka:
   client:
     service-url:

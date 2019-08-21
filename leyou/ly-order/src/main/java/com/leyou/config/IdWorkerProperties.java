@@ -1,8 +1,9 @@
 package com.leyou.config;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-
+@Data
 @ConfigurationProperties(prefix = "ly.worker")
 public class IdWorkerProperties {
 
@@ -10,19 +11,4 @@ public class IdWorkerProperties {
 
     private long datacenterId;// 序列号
 
-    public long getWorkerId() {
-        return workerId;
-    }
-
-    public void setWorkerId(long workerId) {
-        this.workerId = workerId;
-    }
-
-    public long getDatacenterId() {
-        return datacenterId;
-    }
-
-    public void setDatacenterId(long datacenterId) {
-        this.datacenterId = datacenterId;
-    }
 }

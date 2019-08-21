@@ -69,6 +69,7 @@ public class OrderService {
         this.detailMapper.insertList(order.getOrderDetails());
 
         logger.debug("生成订单，订单编号：{}，用户id：{}", orderId, user.getId());
+        //?删除Redis购物车信息
 
         return orderId;
     }

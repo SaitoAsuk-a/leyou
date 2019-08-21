@@ -30,9 +30,9 @@ public class CartService {
     @Autowired
     private GoodsClient goodsClient;
 
-    static final String KEY_PREFIX = "ly:cart:uid:";
+    private static final String KEY_PREFIX = "ly:cart:uid:";
 
-    static final Logger logger = LoggerFactory.getLogger(CartService.class);
+    private static final Logger logger = LoggerFactory.getLogger(CartService.class);
 
     public void addCart(Cart cart) {
 
@@ -110,11 +110,11 @@ public class CartService {
         String key = KEY_PREFIX + user.getId();
         BoundHashOperations<String, Object, Object> hashOps = this.redisTemplate.boundHashOps(key);
         // 获取购物车
-        String json = hashOps.get(skuId.toString()).toString();
+        String json = hashOps.get(skuId).toString();
         Cart cart = JsonUtils.parse(json, Cart.class);
         cart.setNum(num);
         // 写入购物车
-        hashOps.put(skuId.toString(), JsonUtils.serialize(cart));
+        hashOps.put(skuId, JsonUtils.serialize(cart));
     }
 
     public void deleteCartById(Long skuId) {
