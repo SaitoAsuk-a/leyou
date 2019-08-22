@@ -11,10 +11,10 @@ spring:
   application:
     name: item-service
   rabbitmq:
-    host: 192.168.82.100
-    username: leyou
-    password: leyou
-    virtual-host: /leyou
+    host: 192.168.35.188
+    username: guest
+    password: guest
+    virtual-host: /
     template:
       retry:
         enabled: true
@@ -25,6 +25,6 @@ spring:
     publisher-confirms: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/leyou?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: root
+    password: 123456

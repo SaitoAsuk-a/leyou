@@ -28,8 +28,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author bystander
- * @date 2018/10/5
+ * @author liyu
+ * @date 2019/08/15
  */
 @Slf4j
 @Component
@@ -100,18 +100,7 @@ public class PayHelper {
 
             //将结果处理成map
             Map<String, String> result = WXPayUtil.xmlToMap(xml);
-
-
-            //通信失败
-            if (WXPayConstants.FAIL.equals(result.get("return_code"))) {
-                log.error("【微信下单】与微信通信失败，失败信息：{}", result.get("return_msg"));
-                return null;
-            }
-
-            //下单失败
-            if (WXPayConstants.FAIL.equals(result.get("result_code"))) {
-                log.error("【微信下单】创建预交易订单失败，错误码：{}，错误信息：{}",
-                        result.get("err_code"), result.get("err_code_des"));
+            if (isSuccess(result)) {
                 return null;
             }
 
@@ -132,6 +121,27 @@ public class PayHelper {
             log.error("【微信下单】创建预交易订单异常", e);
             return null;
         }
+    }
+
+    /**
+     *校检返回参数
+     * @param result
+     * @return
+     */
+    public boolean isSuccess(Map<String, String> result) {
+        //通信失败
+        if (WXPayConstants.FAIL.equals(result.get("return_code"))) {
+            log.error("【微信下单】与微信通信失败，失败信息：{}", result.get("return_msg"));
+            return false;
+        }
+
+        //下单失败
+        if (WXPayConstants.FAIL.equals(result.get("result_code"))) {
+            log.error("【微信下单】创建预交易订单失败，错误码：{}，错误信息：{}",
+                    result.get("err_code"), result.get("err_code_des"));
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -159,6 +169,10 @@ public class PayHelper {
      * @param msg
      */
     public void handleNotify(Map<String, String> msg) {
+        //处理返回码是否成功
+        if (isSuccess(msg)==false) {
+            throw new LyException(ExceptionEnum.WX_PAY_NOTIFY_PARAM_ERROR);
+        }
         //检验签名
         isSignatureValid(msg);
 

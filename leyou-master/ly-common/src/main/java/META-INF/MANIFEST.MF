@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Class-Path: jackson-core-2.9.6.jar slf4j-api-1.7.25.jar lombok-1.16.22
+ .jar tomcat-embed-el-8.5.32.jar mapper-spring-1.0.4.jar hibernate-val
+ idator-6.0.11.Final.jar mapper-core-1.0.4.jar spring-boot-starter-tom
+ cat-2.0.4.RELEASE.jar log4j-to-slf4j-2.10.0.jar spring-aop-5.0.8.RELE
+ ASE.jar logback-classic-1.2.3.jar spring-context-5.0.8.RELEASE.jar ja
+ ckson-datatype-jsr310-2.9.6.jar spring-boot-starter-2.0.4.RELEASE.jar
+  tomcat-embed-core-8.5.32.jar tomcat-annotations-api-8.5.32.jar snake
+ yaml-1.19.jar mapper-extra-1.0.4.jar spring-web-5.0.8.RELEASE.jar spr
+ ing-boot-starter-logging-2.0.4.RELEASE.jar spring-boot-2.0.4.RELEASE.
+ jar jackson-databind-2.9.6.jar mapper-spring-boot-autoconfigure-2.0.3
+ .jar spring-webmvc-5.0.8.RELEASE.jar mybatis-3.4.6.jar mybatis-spring
+ -1.3.2.jar persistence-api-1.0.jar javax.annotation-api-1.3.2.jar spr
+ ing-boot-starter-json-2.0.4.RELEASE.jar jboss-logging-3.3.2.Final.jar
+  classmate-1.3.4.jar jackson-module-parameter-names-2.9.6.jar commons
+ -lang3-3.4.jar log4j-api-2.10.0.jar spring-jcl-5.0.8.RELEASE.jar spri
+ ng-core-5.0.8.RELEASE.jar logback-core-1.2.3.jar validation-api-2.0.1
+ .Final.jar mapper-spring-boot-starter-2.0.3.jar jul-to-slf4j-1.7.25.j
+ ar mapper-weekend-1.1.3.jar mapper-base-1.0.4.jar jackson-annotations
+ -2.9.0.jar spring-boot-autoconfigure-2.0.4.RELEASE.jar spring-boot-st
+ arter-web-2.0.4.RELEASE.jar spring-beans-5.0.8.RELEASE.jar jackson-da
+ tatype-jdk8-2.9.6.jar tomcat-embed-websocket-8.5.32.jar spring-expres
+ sion-5.0.8.RELEASE.jar
+Main-Class: com.leyou.common.LyCommonApplication
+

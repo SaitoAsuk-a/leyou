@@ -11,6 +11,7 @@
 
     <artifactId>ly-common</artifactId>
 
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -39,6 +40,5 @@
             </exclusions>
         </dependency>
     </dependencies>
-
 
 </project>
